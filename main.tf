@@ -1,17 +1,16 @@
-locals {
+/* locals {
   requestor_cidr_blocks = var.is_enabled ? tolist(setsubtract([
     for k, v in data.aws_vpc.requestor.cidr_block_associations : v.cidr_block
   ], var.requestor_ignore_cidrs)) : []
   acceptor_cidr_blocks = var.is_enabled ? tolist(setsubtract([
     for k, v in data.aws_vpc.acceptor.cidr_block_associations : v.cidr_block
   ], var.acceptor_ignore_cidrs)) : []
-}
+} */
 
 resource "aws_vpc_peering_connection" "this" {
-  /* count = var.is_enabled ? 1 : 0 */
 
-  vpc_id      = join("", data.aws_vpc.requestor.id)
-  peer_vpc_id = join("", data.aws_vpc.acceptor.id)
+  vpc_id      = var.requestor_vpc_id
+  peer_vpc_id = var.acceptor_vpc_id
 
   /* peer_region = var.accepter_region */
   auto_accept = !var.auto_accept
