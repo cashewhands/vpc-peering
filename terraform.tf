@@ -12,7 +12,7 @@ terraform {
     organization = "Cashewhands"
     workspaces {
       tags = [
-        "networking",
+        "vpc-peering",
       ]
     }
   }
