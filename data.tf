@@ -1,16 +1,17 @@
 # Lookup requestor VPC so that we can reference the CIDR
-/* data "aws_vpc" "requestor" {
-  count = var.is_enabled ? 1 : 0
+data "aws_vpc" "requestor" {
+  /* count = var.is_enabled ? 1 : 0 */
   id = var.requestor_vpc_id
-} */
+}
 
 # Lookup acceptor VPC so that we can reference the CIDR
 data "aws_vpc" "acceptor" {
   id = var.acceptor_vpc_id
+  provider = aws.euw1
+}
 
-  providers = {
-    aws = aws.euw1
-  }
+data "aws_caller_identity" "acceptor" {
+  provider = aws.euw1
 }
 
 /* data "aws_route_tables" "requestor" {
