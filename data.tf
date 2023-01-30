@@ -11,11 +11,11 @@ data "aws_vpc" "acceptor" {
 }
 
 data "aws_route_tables" "requestor" {
-  count  = var.is_enabled ? 1 : 0
-  vpc_id = join("", data.aws_vpc.requestor.*.id)
+  /* count  = var.is_enabled ? 1 : 0 */
+  vpc_id = join("", data.aws_vpc.requestor.id)
 }
 
 data "aws_route_tables" "acceptor" {
-  count  = var.is_enabled ? 1 : 0
+  /* count  = var.is_enabled ? 1 : 0 */
   vpc_id = join("", data.aws_vpc.acceptor.*.id)
 }
