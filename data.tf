@@ -6,7 +6,7 @@ data "aws_vpc" "requestor" {
 
 # Lookup acceptor VPC so that we can reference the CIDR
 data "aws_vpc" "acceptor" {
-  id = var.acceptor_vpc_id
+  id       = var.acceptor_vpc_id
   provider = aws.euw1
 }
 

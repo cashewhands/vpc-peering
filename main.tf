@@ -9,8 +9,8 @@
 
 resource "aws_vpc_peering_connection" "this" {
 
-  vpc_id      = var.requestor_vpc_id
-  peer_vpc_id = var.acceptor_vpc_id
+  vpc_id        = var.requestor_vpc_id
+  peer_vpc_id   = var.acceptor_vpc_id
   peer_owner_id = data.aws_caller_identity.acceptor.account_id
 
   peer_region = "eu-west-1"
@@ -24,7 +24,7 @@ resource "aws_vpc_peering_connection" "this" {
 }
 
 resource "aws_vpc_peering_connection_accepter" "this" {
-  provider = aws.euw1
+  provider                  = aws.euw1
   vpc_peering_connection_id = aws_vpc_peering_connection.this.id
   auto_accept               = var.auto_accept
 }
